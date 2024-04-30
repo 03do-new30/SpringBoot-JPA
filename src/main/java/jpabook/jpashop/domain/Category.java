@@ -8,6 +8,8 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
+import static jakarta.persistence.FetchType.*;
+
 @Entity
 @Getter @Setter
 public class Category {
@@ -26,7 +28,7 @@ public class Category {
     private List<Item> items = new ArrayList<>();
 
     // [START] 셀프로 건 양방향 연관관계
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "parent_id")
     private Category parent; // 상위 카테고리. 매니 투 원이겠지?
 
