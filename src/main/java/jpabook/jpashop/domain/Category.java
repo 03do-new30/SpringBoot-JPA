@@ -26,7 +26,7 @@ public class Category {
     private List<Item> items = new ArrayList<>();
 
     // [START] 셀프로 건 양방향 연관관계
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
     private Category parent; // 상위 카테고리. 매니 투 원이겠지?
 
