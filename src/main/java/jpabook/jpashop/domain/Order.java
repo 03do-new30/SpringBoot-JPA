@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static jakarta.persistence.CascadeType.*;
 import static jakarta.persistence.FetchType.LAZY;
 
 @Entity
@@ -22,10 +23,20 @@ public class Order {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = ALL)
+    // cascade -> orderItems에 데이터를 넣어놓고, order를 저장하면, orderItems도 같이 저장
+    // persist를 전파한다 (ALL일 경우 delete도 전파)
     private List<OrderItem> orderItems = new ArrayList<>();
 
-    @OneToOne(fetch = LAZY)
+//    [cascade가 없을 때]
+//    persist(orderItemA);
+//    persist(orderItemB);
+//    persist(orderItemC);
+//     persist(order);
+//    [cascade 설정을 해주면]
+//    persist(order); 하나로 끝
+
+    @OneToOne(fetch = LAZY, cascade = ALL)
     @JoinColumn(name = "delivery_id")
     private Delivery delivery;
 
