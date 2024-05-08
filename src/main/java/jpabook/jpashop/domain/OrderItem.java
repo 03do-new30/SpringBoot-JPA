@@ -28,6 +28,9 @@ public class OrderItem {
 
     private int count; // 주문 수량
 
+    // 외부에서 기본 생성자로 생성하지 못하게 막는다
+    protected OrderItem() {}
+
     // ===== 생성 메서드 ===== //
     public static OrderItem createOrderItem(Item item, int orderPrice, int count) {
         OrderItem orderItem = new OrderItem();
